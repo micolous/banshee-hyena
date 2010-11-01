@@ -205,6 +205,8 @@ namespace Hyena.Data.Gui
                         HeaderFocused = false;
                     }
                     break;
+                case Gdk.Key.l:
+                case Gdk.Key.L:
                 case Gdk.Key.Right:
                 case Gdk.Key.KP_Right:
                     handled = true;
@@ -215,6 +217,8 @@ namespace Hyena.Data.Gui
                         InvalidateHeader ();
                     }
                     break;
+                case Gdk.Key.h:
+                case Gdk.Key.H:
                 case Gdk.Key.Left:
                 case Gdk.Key.KP_Left:
                     handled = true;
