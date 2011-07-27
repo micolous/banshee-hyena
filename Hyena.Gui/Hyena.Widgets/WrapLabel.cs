@@ -106,36 +106,10 @@ namespace Hyena.Widgets
                 // Center the text vertically
                 int lw, lh;
                 layout.GetPixelSize (out lw, out lh);
-                int y = Allocation.Y + (Allocation.Height - lh) / 2;
-                
-                //TODO include in a utils class or find one in gtk
-                switch (State) {
-                    case StateType.Active:
-                        StyleContext.State = StateFlags.Active;
-                    break;
-                    case StateType.Focused:
-                        StyleContext.State = StateFlags.Selected;
-                    break;
-                    case StateType.Inconsistent:
-                        StyleContext.State = StateFlags.Inconsistent;
-                    break;
-                    case StateType.Insensitive:
-                        StyleContext.State = StateFlags.Insensitive;
-                    break;
-                    case StateType.Normal:
-                        StyleContext.State = StateFlags.Normal;
-                    break;
-                    case StateType.Prelight:
-                        StyleContext.State = StateFlags.Prelight;
-                    break;
-                    case StateType.Selected:
-                        StyleContext.State = StateFlags.Selected;
-                    break;
-                }
+                int y = (Allocation.Height - lh) / 2;
 
-                StyleContext.RenderLayout (cr, Allocation.X, y, layout);
-                //Gtk.Style.PaintLayout (Style, cr, State, false,
-                //    this, null, Allocation.X, y, layout);
+                StyleContext.State = StateFlags;
+                StyleContext.RenderLayout (cr, 0, y, layout);
             }
 
             return true;
