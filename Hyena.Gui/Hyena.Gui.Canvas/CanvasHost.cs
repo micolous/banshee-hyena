@@ -86,7 +86,7 @@ namespace Hyena.Gui.Canvas
             IsRealized = false;
 
             event_window.UserData = IntPtr.Zero;
-            Hyena.Gui.GtkWorkarounds.WindowDestroy (event_window);
+            event_window.Destroy ();
             event_window = null;
 
             base.OnUnrealized ();
