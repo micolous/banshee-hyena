@@ -40,7 +40,7 @@ using Selection = Hyena.Collections.Selection;
 
 namespace Hyena.Data.Gui
 {
-    public partial class ListView<T> : ListViewBase, ScrollableImplementor
+    public partial class ListView<T> : ListViewBase, Scrollable
     {
         private enum KeyDirection {
             Press,
@@ -76,11 +76,27 @@ namespace Hyena.Data.Gui
         private Adjustment vadjustment;
         public Adjustment Vadjustment {
             get { return vadjustment; }
+            set {
+                if (value == vadjustment) {
+                    return;
+                }
+                vadjustment = value;
+                vadjustment.ValueChanged += OnVadjustmentChanged;
+                UpdateAdjustments ();
+            }
         }
 
         private Adjustment hadjustment;
         public Adjustment Hadjustment {
             get { return hadjustment; }
+            set {
+                if (value == hadjustment) {
+                    return;
+                }
+                hadjustment = value;
+                hadjustment.ValueChanged += OnHadjustmentChanged;
+                UpdateAdjustments ();
+            }
         }
 
         private SelectionProxy selection_proxy = new SelectionProxy ();
@@ -968,21 +984,17 @@ namespace Hyena.Data.Gui
 
 #region Adjustments & Scrolling
 
-        private void UpdateAdjustments ()
-        {
-            UpdateAdjustments (null, null);
+        public Gtk.ScrollablePolicy HscrollPolicy {
+            get; set;
         }
 
-        private void UpdateAdjustments (Adjustment hadj, Adjustment vadj)
+        public Gtk.ScrollablePolicy VscrollPolicy {
+            get; set;
+        }
+
+        private void UpdateAdjustments ()
         {
-            if (hadj != null) {
-                hadjustment = hadj;
-            }
-
-            if (vadj != null) {
-                vadjustment = vadj;
-            }
-
+            Log.Debug ("UpdateAdjustments");
             // FIXME: with ViewLayout, hadj and vadj should be unified
             // since the layout will take the header into account...
             if (hadjustment != null) {
@@ -1087,18 +1099,6 @@ namespace Hyena.Data.Gui
                 }
             }
         }
-
-        /*protected override void OnSetScrollAdjustments (Adjustment hadj, Adjustment vadj)
-        {
-            if (hadj == null || vadj == null) {
-                return;
-            }
-
-            hadj.ValueChanged += OnHadjustmentChanged;
-            vadj.ValueChanged += OnVadjustmentChanged;
-
-            UpdateAdjustments (hadj, vadj);
-        }*/
 
 #endregion
 

@@ -36,7 +36,7 @@ using Hyena.Gui.Theming;
 
 namespace Hyena.Widgets
 {
-    public class RoundedFrame : Bin, Gtk.ScrollableImplementor
+    public class RoundedFrame : Bin, Gtk.Scrollable
     {
         private Theme theme;
         protected Theme Theme {
@@ -84,6 +84,22 @@ namespace Hyena.Widgets
         public bool DrawBorder {
             get { return draw_border; }
             set { draw_border = value; QueueDraw (); }
+        }
+
+        public Gtk.ScrollablePolicy HscrollPolicy {
+            get; set;
+        }
+
+        public Gtk.ScrollablePolicy VscrollPolicy {
+            get; set;
+        }
+
+        public Gtk.Adjustment Vadjustment {
+            get; set;
+        }
+
+        public Gtk.Adjustment Hadjustment {
+            get; set;
         }
 
 #region Gtk.Widget Overrides
@@ -148,13 +164,6 @@ namespace Hyena.Widgets
 
             child.SizeAllocate (child_allocation);
         }
-
-        /*protected override void OnSetScrollAdjustments (Adjustment hadj, Adjustment vadj)
-        {
-            // This is to satisfy the gtk_widget_set_scroll_adjustments
-            // inside of GtkScrolledWindow so it doesn't complain about
-            // its child not being scrollable.
-        }*/
 
         protected override bool OnDrawn (Cairo.Context cr)
         {
