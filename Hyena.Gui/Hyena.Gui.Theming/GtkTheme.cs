@@ -97,8 +97,12 @@ namespace Hyena.Gui.Theming
 
         public override void DrawArrow (Context cr, Gdk.Rectangle alloc, double rotation)
         {
-            rotation -= Math.PI / 2.0;
-            Widget.StyleContext.RenderArrow (cr, rotation, alloc.X, alloc.Y, alloc.Width * alloc.Height);
+            // 0 means pointing to the right for us, but it means pointing to the top for RenderArrow
+            rotation += Math.PI / 2.0;
+
+            int size = Math.Min (alloc.Height, alloc.Width);
+
+            Widget.StyleContext.RenderArrow (cr, rotation, alloc.X, alloc.Y, size);
         }
 
         public override void DrawFrameBackground (Cairo.Context cr, Gdk.Rectangle alloc, Cairo.Color color, Cairo.Pattern pattern)
