@@ -40,7 +40,7 @@ using Selection = Hyena.Collections.Selection;
 
 namespace Hyena.Data.Gui
 {
-    public partial class ListView<T> : ListViewBase, Scrollable
+    public partial class ListView<T> : ListViewBase, ScrollableImplementor
     {
         private enum KeyDirection {
             Press,
