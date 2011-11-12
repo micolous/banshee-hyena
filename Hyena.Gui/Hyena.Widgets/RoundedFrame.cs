@@ -40,7 +40,17 @@ namespace Hyena.Widgets
     {
         private Theme theme;
         protected Theme Theme {
-            get { return theme; }
+            get { 
+                if (theme == null) {
+                    InitTheme ();
+                }
+                return theme;
+            }
+        }
+
+        private void InitTheme () {
+            theme = Hyena.Gui.Theming.ThemeEngine.CreateTheme (this);
+            frame_width = (int)theme.Context.Radius + 1;
         }
 
         private Widget child;
@@ -107,8 +117,7 @@ namespace Hyena.Widgets
         protected override void OnStyleUpdated ()
         {
             base.OnStyleUpdated ();
-            theme = Hyena.Gui.Theming.ThemeEngine.CreateTheme (this);
-            frame_width = (int)theme.Context.Radius + 1;
+            InitTheme ();
         }
 
         protected override void OnGetPreferredHeight (out int minimum_height, out int natural_height)
@@ -185,15 +194,15 @@ namespace Hyena.Widgets
 
             Gdk.Rectangle rect = new Gdk.Rectangle (x, y, width, height);
 
-            theme.Context.ShowStroke = draw_border;
+            Theme.Context.ShowStroke = draw_border;
 
             if (fill_color_set) {
-                theme.DrawFrameBackground (cr, rect, fill_color);
+                Theme.DrawFrameBackground (cr, rect, fill_color);
             } else if (fill_pattern != null) {
-                theme.DrawFrameBackground (cr, rect, fill_pattern);
+                Theme.DrawFrameBackground (cr, rect, fill_pattern);
             } else {
-                theme.DrawFrameBackground (cr, rect, true);
-                theme.DrawFrameBorder (cr, rect);
+                Theme.DrawFrameBackground (cr, rect, true);
+                Theme.DrawFrameBorder (cr, rect);
             }
         }
 
