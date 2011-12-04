@@ -998,7 +998,6 @@ namespace Hyena.Data.Gui
 
         private void UpdateAdjustments ()
         {
-            Log.Debug ("UpdateAdjustments");
             // FIXME: with ViewLayout, hadj and vadj should be unified
             // since the layout will take the header into account...
             if (hadjustment != null) {
