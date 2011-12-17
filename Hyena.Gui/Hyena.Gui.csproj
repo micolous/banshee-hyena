@@ -147,7 +147,6 @@
     <Compile Include="Hyena.Widgets\SmoothScrolledWindow.cs" />
     <Compile Include="Hyena.Widgets\MenuButton.cs" />
     <Compile Include="Hyena.Gui\CompositeUtils.cs" />
-    <Compile Include="Hyena.Gui\TooltipSetter.cs" />
     <Compile Include="Hyena.Widgets\WrapLabel.cs" />
     <Compile Include="Hyena.Query.Gui\QueryDebugger.cs" />
     <Compile Include="Hyena.Gui\TestModuleAttribute.cs" />

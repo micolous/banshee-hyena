@@ -100,7 +100,6 @@ SOURCES =  \
 	Hyena.Gui/ShadingTestWindow.cs \
 	Hyena.Gui/TestModuleAttribute.cs \
 	Hyena.Gui/TestModuleRunner.cs \
-	Hyena.Gui/TooltipSetter.cs \
 	Hyena.Query.Gui/DateQueryValueEntry.cs \
 	Hyena.Query.Gui/FileSizeQueryValueEntry.cs \
 	Hyena.Query.Gui/IntegerQueryValueEntry.cs \
