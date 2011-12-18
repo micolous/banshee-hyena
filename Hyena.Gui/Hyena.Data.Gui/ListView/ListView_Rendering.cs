@@ -147,13 +147,13 @@ namespace Hyena.Data.Gui
                 // FIXME: ViewLayout will never be null in
                 // the future, PaintList will go away
                 if (ViewLayout == null) {
-                    PaintList (cr, new Gdk.Rectangle (0, 0, Allocation.Width, Allocation.Height));
+                    PaintList (cr, Allocation);
                 } else {
                     PaintView (cr, new Rect (0.0, 0.0, Allocation.Width, Allocation.Height));
                 }
             }
 
-            StyleContext.RenderFrame (cr, 0, 0, Allocation.Width, Allocation.Height);
+            Theme.DrawFrameBorder (cr, Allocation);
 
             PaintDraggingColumn (cr);
             StyleContext.Restore ();
